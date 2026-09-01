@@ -1,0 +1,16 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #111;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+canvas {
+  width: min(800px, 100vw);
+  height: auto;
+  display: block;
+  background: white;
+  cursor: crosshair;
+}
