@@ -1,23 +1,25 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  background: #111;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+html,body{
+	margin:0;
+	padding:0;
+	background:#111;
+	width:100%;
+	min-height:100%;
+	font-family:"Hiragino Sans","Yu Gothic",sans-serif;
+	display:grid;
+	place-items:center;
+	overflow:hidden;
 }
-canvas {
-  width: min(800px, 100vw);
-  height: auto;
-  display: block;
-  background: white;
-  cursor: crosshair;
-}
-
-#game{
-	display:block;
-	max-width:100%;
+canvas{
+	width:min(800px,100vw);
 	height:auto;
+	max-height:100svh;
+	display:block;
+	background:white;
+	cursor:crosshair;
 	touch-action:none;
+}
+@media(max-width:600px){
+	canvas{
+		width:100vw;
+	}
 }
