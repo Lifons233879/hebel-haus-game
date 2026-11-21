@@ -135,18 +135,23 @@ function drawStartScreen() {
 }
 
 function drawGameOverScreen() {
-  ctx.fillStyle = "#141414";
-  ctx.fillRect(0, 0, W, H);
+	ctx.fillStyle="#141414";
+	ctx.fillRect(0,0,W,H);
 
-  drawText("GAME OVER", W / 2, 250, 60);
-  drawText(`SCORE：${score}`, W / 2, 320, 30);
-  drawText(`HIGH SCORE：${highScore}`, W / 2, 350, 30);
-  
-  if (newHighScore) {
-    drawText("ハイスコア更新！", W / 2, 410, 30);
-  }
-  
-  drawText("Rキーでリトライ", W / 2, 460, 24);
+	drawText("GAME OVER",W/2,220,60);
+	drawText(`SCORE：${score}`,W/2,290,30);
+	drawText(`HIGH SCORE：${highScore}`,W/2,330,30);
+
+	if(newHighScore){
+		drawText("ハイスコア更新！",W/2,380,30,"center","#FFD700");
+	}
+
+	const over=mouseX>=250&&mouseX<=550&&mouseY>=435&&mouseY<=505;
+	ctx.fillStyle=over?"#969696":"#646464";
+	ctx.fillRect(250,435,300,70);
+	drawText("もう一度遊ぶ",W/2,479,28);
+
+	drawText("Rキーでもリトライできます",W/2,540,18,"center","#AAAAAA");
 }
 
 function updateGame() {
