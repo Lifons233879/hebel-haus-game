@@ -120,42 +120,48 @@ function drawText(text, x, y, size, align = "center", color = "#fff") {
   ctx.fillText(text, x, y);
 }
 
-function drawStartScreen() {
-  ctx.fillStyle = "#141414";
-  ctx.fillRect(0, 0, W, H);
-
-  drawText("避けろ！", W / 2, 130, 60);
-  drawText("ヘーベルハウス君！", W / 2, 200, 60);
-
-  drawText("敵に当たらないように避けよう！", W / 2, 270, 24);
-  drawText("敵を1個避けると 10 POINT！", W / 2, 320, 24);
-  drawText("スコアが増えるほど敵が速くなる！", W / 2, 370, 24);
-
-  const over = mouseX > 250 && mouseX < 550 && mouseY > 445 && mouseY < 515;
-  ctx.fillStyle = over ? "#969696" : "#646464";
-  ctx.fillRect(250, 445, 300, 70);
-
-  drawText("START", W / 2, 490, 30);
-}
-
-function drawGameOverScreen() {
+function drawStartScreen(){
 	ctx.fillStyle="#141414";
 	ctx.fillRect(0,0,W,H);
 
-	drawText("GAME OVER",W/2,220,60);
-	drawText(`SCORE：${score}`,W/2,290,30);
-	drawText(`HIGH SCORE：${highScore}`,W/2,330,30);
+	const mobile=window.matchMedia("(max-width:600px)").matches;
+	const titleSize=mobile?48:60;
+	const textSize=mobile?22:24;
+
+	drawText("避けろ！",W/2,130,titleSize);
+	drawText("ヘーベルハウス君！",W/2,200,titleSize);
+
+	drawText("敵に当たらないように避けよう！",W/2,270,textSize);
+	drawText("敵を1個避けると 10 POINT！",W/2,320,textSize);
+	drawText("スコアが増えるほど敵が速くなる！",W/2,370,textSize);
+
+	const over=mouseX>250&&mouseX<550&&mouseY>445&&mouseY<515;
+	ctx.fillStyle=over?"#969696":"#646464";
+	ctx.fillRect(250,445,300,70);
+
+	drawText("START",W/2,490,mobile?34:30);
+}
+
+function drawGameOverScreen(){
+	ctx.fillStyle="#141414";
+	ctx.fillRect(0,0,W,H);
+
+	const mobile=window.matchMedia("(max-width:600px)").matches;
+
+	drawText("GAME OVER",W/2,220,mobile?52:60);
+	drawText(`SCORE：${score}`,W/2,290,mobile?32:30);
+	drawText(`HIGH SCORE：${highScore}`,W/2,330,mobile?32:30);
 
 	if(newHighScore){
-		drawText("ハイスコア更新！",W/2,380,30,"center","#FFD700");
+		drawText("ハイスコア更新！",W/2,380,mobile?32:30,"center","#FFD700");
 	}
 
 	const over=mouseX>=250&&mouseX<=550&&mouseY>=435&&mouseY<=505;
 	ctx.fillStyle=over?"#969696":"#646464";
 	ctx.fillRect(250,435,300,70);
-	drawText("もう一度遊ぶ",W/2,479,28);
 
-	drawText("Rキーでもリトライできます",W/2,540,18,"center","#AAAAAA");
+	drawText("もう一度遊ぶ",W/2,479,mobile?30:28);
+	drawText(mobile?"タップしてリトライ":"Rキーでもリトライできます",W/2,540,mobile?22:18,"center","#AAAAAA");
 }
 
 function updateGame() {
