@@ -69,20 +69,24 @@ function playSE(sound) {
   sound.play().catch(() => {});
 }
 
-canvas.addEventListener("mousemove", (e) => {
-  const rect = canvas.getBoundingClientRect();
-  mouseX = (e.clientX - rect.left) * W / rect.width;
+canvas.addEventListener("pointermove",(e)=>{
+	const rect=canvas.getBoundingClientRect();
+	mouseX=(e.clientX-rect.left)*W/rect.width;
+	mouseY=(e.clientY-rect.top)*H/rect.height;
 });
 
-canvas.addEventListener("click", () => {
-  if (!gameStarted) {
-    // STARTボタン
-    if (mouseX >= 250 && mouseX <= 550 && mouseY >= 445 && mouseY <= 515) {
-      gameStarted = true;
-      resetGame();
-      playSE(gameStartSE);
-    }
-  }
+canvas.addEventListener("pointerdown",(e)=>{
+	const rect=canvas.getBoundingClientRect();
+	mouseX=(e.clientX-rect.left)*W/rect.width;
+	mouseY=(e.clientY-rect.top)*H/rect.height;
+
+	if(!gameStarted){
+		if(mouseX>=250&&mouseX<=550&&mouseY>=445&&mouseY<=515){
+			gameStarted=true;
+			resetGame();
+			playSE(gameStartSE);
+		}
+	}
 });
 
 let mouseY = 480;
