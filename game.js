@@ -86,6 +86,10 @@ canvas.addEventListener("pointerdown",(e)=>{
 			resetGame();
 			playSE(gameStartSE);
 		}
+	}else if(gameOver){
+		if(mouseX>=250&&mouseX<=550&&mouseY>=435&&mouseY<=505){
+			resetGame();
+		}
 	}
 });
 
